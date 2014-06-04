@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Life Counter</string>
+    <string name="action_settings">Settings</string>
+    <string name="new_game">New Game</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="default_life">20</string>
+    <string name="button1plus">+1</string>
+    <string name="button5plus">+5</string>
+    <string name="button1minus">-1</string>
+    <string name="button5minus">-5</string>
+    <string name="maxHP">Starting Life</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="settings_bg_color_confirm">#000000</string>
+    <string name="settings_default_color_confirm">#e5e5e5</string>
+    <string name="settings_bg_color_dialog">#000000</string>
+    <string name="colorHP">Counter color</string>
+    <string name="BGcolorHP">Background color</string>
+    <string name="player1">Player 1:</string>
+    <string name="player2">Player 2:</string>
+    <string name="die_roll">Roll a die</string>
+    <string name="log_visibility">Show/Hide log</string>
+    <string name="show">Show</string>
+    <string name="hide">Hide</string>
+    
+
+</resources>

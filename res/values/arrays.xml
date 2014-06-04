@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="max_hp_options">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+    </string-array>
+    <string-array name="colors">
+        <item>black</item>
+        <item>white</item>
+        <item>red</item>
+        <item>green</item>
+        <item>blue</item>
+    </string-array>
+        <string-array name="color_values">
+        <item>#000000</item>
+        <item>#ffffff</item>
+        <item>#ff0000</item>
+        <item>#00ff00</item>
+        <item>#0000ff</item>
+    </string-array>
+</resources>

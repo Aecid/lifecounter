@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -24,7 +25,10 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends Activity {
 
@@ -50,8 +54,20 @@ public class MainActivity extends Activity {
    	private String result;
    	private String title;
    	private LinearLayout log;
-    
-    @Override
+	private int p1Games;
+	private int p2Games;
+	private int round;
+	private TextView p1GamesWon;
+	private TextView p2GamesWon;
+	private ScrollView p1LogScroll;
+	private ScrollView p2LogScroll;
+	private float textSize;
+	private int p1PoisonCounters;
+	private int p2PoisonCounters;
+	private TextView p1PoisonCountersView;
+	private TextView p2PoisonCountersView;
+
+	@Override
     protected void onSaveInstanceState(Bundle outState) {
         //outState.putString("p1Life", player1life.getText().toString());
         //outState.putString("p2Life", player2life.getText().toString());
@@ -92,7 +108,7 @@ public class MainActivity extends Activity {
 	
 	private Runnable setStackP1 = new Runnable() {
 		   public void run() {
-			   	int p1life=Integer.valueOf(player1life.getText().toString()).intValue();
+			   	int p1life=Integer.valueOf(player1life.getText().toString());
 	        	p1LifeLog=p1LifeLog+p1life;
 	        	String text = p1log.getText().toString();
 	        	String[] array = text.split(", ");
@@ -107,7 +123,7 @@ public class MainActivity extends Activity {
 		}; 
 		private Runnable setStackP2 = new Runnable() {
 			   public void run() {
-				   	int p2life=Integer.valueOf(player2life.getText().toString()).intValue();
+				   	int p2life=Integer.valueOf(player2life.getText().toString());
 		        	p2LifeLog=p2LifeLog+p2life;
 		        	String text = p2log.getText().toString();
 		        	String[] array = text.split(", ");
@@ -115,7 +131,7 @@ public class MainActivity extends Activity {
 		        	if (!lastLife.equals(String.valueOf(p2LifeLog))) {
 		        	p2log.setText(text + ", " + String.valueOf(p2LifeLog));
 		        	}
-		        	array=null;
+				   array=null;
 		        	p2LifeLog=0;
 		    		mHandler.removeCallbacks(setStackP2);
 			   }
@@ -131,7 +147,7 @@ public class MainActivity extends Activity {
         player2life = (TextView)findViewById(R.id.player2);
         p1log = (TextView)findViewById(R.id.p1log);
         p2log = (TextView)findViewById(R.id.p2log);
-        
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
      
         int life = prefs.getInt(PreferencesActivity.STARTING_HP, 1);
@@ -143,7 +159,7 @@ public class MainActivity extends Activity {
        player1life.setTextColor(Color.parseColor(colorValues[colorName]));        
         
        player2life.setTextColor(Color.parseColor(colorValues[colorName]));
-        if(gameStarted!=true) {
+        if(!gameStarted) {
         player1life.setText(String.valueOf(hps[life]));
         player2life.setText(String.valueOf(hps[life]));
         if (hps[life]!=null) {
@@ -152,7 +168,7 @@ public class MainActivity extends Activity {
         }
         }
 	}
-	
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,7 +178,7 @@ public class MainActivity extends Activity {
         p1log = (TextView)findViewById(R.id.p1log);
         p2log = (TextView)findViewById(R.id.p2log);
         log = (LinearLayout)findViewById(R.id.log);
-      
+        textSize = player1life.getTextSize();
         gameStarted=false;
         reset();
         //updatePrefs();
@@ -212,7 +228,7 @@ public class MainActivity extends Activity {
         @Override
         public boolean onFling(MotionEvent start, MotionEvent finish, float velocityX, float velocityY)
         {
-        	int p1life=Integer.valueOf(player1life.getText().toString()).intValue();
+        	int p1life=Integer.valueOf(player1life.getText().toString());
         	  if (start.getRawX() < finish.getRawX()) {
               	p1life++;
                 player1life.setText(String.valueOf(p1life));
@@ -229,7 +245,7 @@ public class MainActivity extends Activity {
         @Override
         public boolean onFling(MotionEvent start, MotionEvent finish, float velocityX, float velocityY)
         {
-        	int p2life=Integer.valueOf(player2life.getText().toString()).intValue();
+        	int p2life=Integer.valueOf(player2life.getText().toString());
         	  if (start.getRawX() < finish.getRawX()) {
               	p2life++;
                 player2life.setText(String.valueOf(p2life));
@@ -276,9 +292,20 @@ public class MainActivity extends Activity {
     	wakeLock.release();
 	    Log.v("PowerAce", String.valueOf(gameStarted));
     }
-    
 
 
+	private void checkSize(TextView textView, int life)
+	{
+		if (life > 99) {
+			textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize-50);
+		}
+		if (life > 999) {
+			textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize-100);
+		}
+		if (life < 100) {
+			textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+		}
+	}
    
 
         public void onClick(View v) {
@@ -288,49 +315,58 @@ public class MainActivity extends Activity {
             //TextView player2life;
             //player2life = (TextView)findViewById(R.id.player2);
 
-        	p1life=Integer.valueOf(player1life.getText().toString()).intValue();
-        	p2life=Integer.valueOf(player2life.getText().toString()).intValue();
+        	p1life=Integer.valueOf(player1life.getText().toString());
+        	p2life=Integer.valueOf(player2life.getText().toString());
             gameStarted=true;
             switch (v.getId()) {
                 case R.id.button1plus_player1:
                 	
                 	p1life++;
+					checkSize(player1life, p1life);
                     player1life.setText(String.valueOf(p1life));
+
   //                  mHandler.postDelayed(setStackP1, 5000);
                     break;
                 case R.id.button1minus_player1:
                 	p1life--;
-                    player1life.setText(String.valueOf(p1life));
+					checkSize(player1life, p1life);
+					player1life.setText(String.valueOf(p1life));
   //                  mHandler.postDelayed(setStackP1, 5000);
                     break;
                 case R.id.button5plus_player1:
                 	p1life=p1life+5;
-                    player1life.setText(String.valueOf(p1life));
+					checkSize(player1life, p1life);
+					player1life.setText(String.valueOf(p1life));
   //                  mHandler.postDelayed(setStackP1, 5000);
                     break;
                 case R.id.button5minus_player1:
                 	p1life=p1life-5;
-                    player1life.setText(String.valueOf(p1life));
+					checkSize(player1life, p1life);
+					player1life.setText(String.valueOf(p1life));
   //                  mHandler.postDelayed(setStackP1, 5000);
                     break;
                 case R.id.button1plus_player2:
                 	p2life++;
-                    player2life.setText(String.valueOf(p2life));
+					checkSize(player2life, p2life);
+					player2life.setText(String.valueOf(p2life));
   //                  mHandler.postDelayed(setStackP2, 5000);
                     break;
                 case R.id.button1minus_player2:
                 	p2life--;
-                    player2life.setText(String.valueOf(p2life));
+					checkSize(player2life, p2life);
+					player2life.setText(String.valueOf(p2life));
    //                 mHandler.postDelayed(setStackP2, 5000);
                     break;
                 case R.id.button5plus_player2:
                 	p2life=p2life+5;
-                  player2life.setText(String.valueOf(p2life));
+					checkSize(player2life, p2life);
+					player2life.setText(String.valueOf(p2life));
   //                mHandler.postDelayed(setStackP2, 5000);
                     break;
                 case R.id.button5minus_player2:
                 	p2life=p2life-5;
-                    player2life.setText(String.valueOf(p2life));
+					checkSize(player2life, p2life);
+					player2life.setText(String.valueOf(p2life));
    //                 mHandler.postDelayed(setStackP2, 5000);
                     break;
                 default:
@@ -404,7 +440,7 @@ public class MainActivity extends Activity {
         	  case 0:
         	  {		
         		  	title="Coin flip:";
-                 	if (random.nextBoolean() == true) {
+                 	if (random.nextBoolean()) {
                    		result="Heads";
                    	} else {
                    		result="Tails";

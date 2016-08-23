@@ -4,12 +4,68 @@
     android:layout_height="match_parent"
     android:background="#000000"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" 
+
+    tools:context=".MainActivity"
     android:gravity="center" android:baselineAligned="false">
+	<LinearLayout
+		android:layout_marginTop="50px"
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center">
+		<Button
+			android:id="@+id/buttonPlusGameP1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/button1plus"
+			style="@style/CounterButton"
+			/>
+		<Button
+			android:id="@+id/buttonMinusGameP1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/button1minus"
+			style="@style/CounterButton"
+			/>
+<TextView
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	style="@style/LifeCounter"
+	android:text="2"
+	android:textSize="50dp"
+	android:gravity="center"
+	android:layout_marginLeft="100px"/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@style/LifeCounter"
+			android:text=" - "
+			android:textSize="50dp"
+			/>
+<TextView
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	style="@style/LifeCounter"
+	android:text="2"
+	android:textSize="50dp"
+	android:gravity="center"
+	android:layout_marginRight="100px"/>
+		/>
+		<Button
+			android:id="@+id/buttonPlusGameP2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/button1plus"
+			style="@style/CounterButton"
+			/>
+		<Button
+			android:id="@+id/buttonMinusGameP2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/button1minus"
+			style="@style/CounterButton"
+			/>
+	</LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -20,20 +76,21 @@
     	    android:layout_width="0dip"
     	    android:layout_weight="35"
     	    android:layout_height="match_parent"
-    	    android:orientation="horizontal" 
+    	    android:orientation="horizontal"
     	    android:gravity="center">
-    	    <LinearLayout 
+    	    <LinearLayout
     	        android:layout_width="wrap_content"
     	        android:layout_height="match_parent"
     	        android:orientation="vertical"
     	        android:gravity="center">
-    		<Button
-    	    	android:id="@+id/button1minus_player1"
-    	    	android:layout_width="wrap_content"
-    	    	android:layout_height="wrap_content"
-    	    	android:text="@string/button1minus"
-    	    	style="@style/CounterButtonLarge"
-    	    />   
+
+				<Button
+					android:id="@+id/button1minus_player1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/button1minus"
+					style="@style/CounterButtonLarge"
+					/>
         	<Button
     	    	android:id="@+id/button5minus_player1"
     	    	android:layout_width="wrap_content"
@@ -48,16 +105,10 @@
 			    android:orientation="vertical"
 			    android:gravity="center"
 			    >
-        	<TextView 
-        	    android:layout_width="wrap_content"
-        	    android:layout_height="wrap_content"
-        	    android:text="@string/player1"
-        	    style="@style/log"/>
-
         	<TextView
         	    android:id="@+id/player1"
         	    style="@style/LifeCounterLandLarge"
-        	    android:layout_width="200dp"
+        	    android:layout_width="250dp"
         	    android:layout_height="wrap_content"
         	    android:gravity="center"
         	    android:text="@string/default_life" />
@@ -81,17 +132,17 @@
     		    android:layout_width="wrap_content"
     		    android:layout_height="wrap_content"
     		    android:text="@string/button5plus"
-				style="@style/CounterButtonLarge" 
+				style="@style/CounterButtonLarge"
 				/>
-   	    	</LinearLayout>   
+   	    	</LinearLayout>
     	</LinearLayout>
    	<LinearLayout
     	    android:layout_height="match_parent"
     	    android:layout_width="0dip"
-    	    android:orientation="horizontal" 
+    	    android:orientation="horizontal"
     	    android:layout_weight="35"
     	    android:gravity="center">
-    	    <LinearLayout 
+    	    <LinearLayout
     	        android:layout_width="wrap_content"
     	        android:layout_height="match_parent"
     	        android:orientation="vertical"
@@ -102,7 +153,7 @@
     	    	android:layout_height="wrap_content"
     	    	android:text="@string/button1minus"
     	    	style="@style/CounterButtonLarge"
-    	    />   
+    	    />
         	<Button
     	    	android:id="@+id/button5minus_player2"
     	    	android:layout_width="wrap_content"
@@ -116,16 +167,10 @@
 			    android:layout_height="wrap_content"
 			    android:orientation="vertical"
 			    android:gravity="center">
-        	<TextView 
-        	    android:layout_width="wrap_content"
-        	    android:layout_height="wrap_content"
-        	    android:text="@string/player2"
-        	    style="@style/log"/>
-
         	<TextView
         	    android:id="@+id/player2"
         	    style="@style/LifeCounterLandLarge"
-        	    android:layout_width="200dp"
+        	    android:layout_width="250dp"
         	    android:layout_height="wrap_content"
         	    android:gravity="center"
         	    android:text="@string/default_life" />
@@ -150,59 +195,132 @@
     		    android:layout_width="wrap_content"
     		    android:layout_height="wrap_content"
     		    android:text="@string/button5plus"
-				style="@style/CounterButtonLarge" 
+				style="@style/CounterButtonLarge"
 				/>
-   	    	</LinearLayout>   
+   	    	</LinearLayout>
     	</LinearLayout>
     	</LinearLayout>
 	<LinearLayout
+		android:id="@+id/poisonCounters"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="center">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="50"
+			android:gravity="center">
+
+			<Button
+				android:id="@+id/buttonMinusPoisonP1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/button1minus"
+				style="@style/CounterButton"
+				/>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@mipmap/poison"
+			android:layout_gravity="center"/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@style/LifeCounter"
+			android:text="2"
+			android:textSize="50dp"
+			android:gravity="center"/>
+			<Button
+				android:id="@+id/buttonPlusPoisonP1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/button1plus"
+				style="@style/CounterButton"
+				/>
+		</LinearLayout>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="50"
+			android:gravity="center">
+			<Button
+				android:id="@+id/buttonMinusPoisonP2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/button1minus"
+				style="@style/CounterButton"
+				/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@mipmap/poison"
+				android:layout_gravity="center"/>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				style="@style/LifeCounter"
+				android:text="2"
+				android:textSize="50dp"
+				android:gravity="center"/>
+			<Button
+				android:id="@+id/buttonPlusPoisonP2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/button1plus"
+				style="@style/CounterButton"
+				/>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
 	       	    android:id="@+id/log"
-	    
+		android:padding="20px"
 	    android:layout_height="0dip"
 	    android:layout_width="fill_parent"
 	    android:layout_weight="25"
-	    android:orientation="vertical">
+	    android:orientation="horizontal">
    			<LinearLayout
    		    	android:layout_height="wrap_content"
-   		    	android:layout_width="wrap_content"
+				android:layout_width="fill_parent"
    		    	android:orientation="horizontal"
+				android:layout_weight="25"
    		    	>
 
-   		    		<TextView
-   		    		    style="@style/log"
-   		    		    android:layout_width="wrap_content"
-   		    		    android:layout_height="wrap_content"
-   		    		    android:text="@string/player1"
-   		    		    android:layout_marginRight="20dp"
-   		    		     />
-   		    
-	    			<TextView 
-	        		android:id="@+id/p1log"
-	        		android:layout_width="wrap_content"
-	        		android:layout_height="wrap_content"
-	        		style="@style/log"
-	        		android:text="@string/default_life"
-	        		/>
+				<ScrollView
+					android:id="@+id/p1LogScroll"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<TextView
+						android:id="@+id/p1log"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="bottom"
+						style="@style/log"
+						android:text="@string/default_life"
+						android:layout_marginRight="20dp"
+
+						/>
+				</ScrollView>
 	    	</LinearLayout>
    			<LinearLayout
    		    	android:layout_height="wrap_content"
-   		    	android:layout_width="wrap_content"
+   		    	android:layout_width="fill_parent"
    		    	android:orientation="horizontal"
-   		    	>
-	    			<TextView
-   		    		android:layout_width="wrap_content"
-   		    		android:layout_height="wrap_content"
-   		    		android:text="@string/player2"
-   		    		style="@style/log"
-   		    		android:layout_marginRight="20dp"
-   		    	/>
-	     			<TextView 
-	        		android:id="@+id/p2log"
-	        		android:layout_width="wrap_content"
-	        		android:layout_height="wrap_content"
-	        		android:text="@string/default_life"
-	        		style="@style/log"
-	        />
+				android:layout_weight="25"
+				android:layout_marginLeft="20dp"
+				>
+				<ScrollView
+					android:id="@+id/p2LogScroll"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+						<TextView
+						android:id="@+id/p2log"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="bottom"
+						android:text="@string/default_life"
+						style="@style/log"/>
+				</ScrollView>
 	     </LinearLayout>
 	</LinearLayout>
 </LinearLayout>
